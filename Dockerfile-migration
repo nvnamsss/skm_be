@@ -1,0 +1,11 @@
+FROM golang as builder
+
+ADD src/migrations /go/src/migrations
+ADD scripts/migration.sh /go/scripts/migration.sh
+ADD Makefile /go/
+
+WORKDIR /go
+
+RUN CGO_ENABLED=0 go install github.com/pressly/goose/v3/cmd/goose@latest
+
+ENTRYPOINT make migrate

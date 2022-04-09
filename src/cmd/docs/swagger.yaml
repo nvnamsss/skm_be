@@ -1,0 +1,157 @@
+definitions:
+  dtos.CreateQuotesRequest:
+    properties:
+      author:
+        type: string
+      content:
+        type: string
+    required:
+    - author
+    - content
+    type: object
+  dtos.CreateQuotesResponse:
+    properties:
+      meta:
+        $ref: '#/definitions/dtos.Meta'
+        type: object
+    type: object
+  dtos.GetQuotesResponse:
+    properties:
+      data:
+        $ref: '#/definitions/dtos.QuotesData'
+        type: object
+      meta:
+        $ref: '#/definitions/dtos.Meta'
+        type: object
+    type: object
+  dtos.LikeQuotesData:
+    properties:
+      like:
+        type: integer
+    type: object
+  dtos.LikeQuotesRequest:
+    properties:
+      negative:
+        type: boolean
+    type: object
+  dtos.LikeQuotesResponse:
+    properties:
+      data:
+        $ref: '#/definitions/dtos.LikeQuotesData'
+        type: object
+      meta:
+        $ref: '#/definitions/dtos.Meta'
+        type: object
+    type: object
+  dtos.Meta:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+    type: object
+  dtos.QuotesData:
+    properties:
+      author:
+        type: string
+      content:
+        type: string
+      id:
+        type: integer
+      like:
+        type: integer
+    type: object
+  errors.AppError:
+    properties:
+      error:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /v1/quotes:
+    get:
+      consumes:
+      - application/json
+      description: create quotes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.GetQuotesResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      tags:
+      - Quotes
+    post:
+      consumes:
+      - application/json
+      description: create quotes
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.CreateQuotesRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.CreateQuotesResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      tags:
+      - Quotes
+  /v1/quotes/like/:id:
+    post:
+      consumes:
+      - application/json
+      description: create quotes
+      parameters:
+      - description: quotes id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: request
+        in: body
+        name: values
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.LikeQuotesRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.LikeQuotesResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      tags:
+      - Quotes
+swagger: "2.0"

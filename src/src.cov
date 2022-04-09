@@ -1,0 +1,13 @@
+mode: set
+famous-quote/services/quotes.go:25.83,27.16 2 1
+famous-quote/services/quotes.go:31.2,40.8 3 1
+famous-quote/services/quotes.go:27.16,30.3 2 1
+famous-quote/services/quotes.go:43.120,48.63 3 0
+famous-quote/services/quotes.go:53.2,58.8 1 0
+famous-quote/services/quotes.go:48.63,51.3 2 0
+famous-quote/services/quotes.go:61.114,66.18 2 1
+famous-quote/services/quotes.go:69.2,70.16 2 1
+famous-quote/services/quotes.go:75.2,83.8 1 1
+famous-quote/services/quotes.go:66.18,68.3 1 1
+famous-quote/services/quotes.go:70.16,73.3 2 1
+famous-quote/services/quotes.go:86.85,90.2 1 0
